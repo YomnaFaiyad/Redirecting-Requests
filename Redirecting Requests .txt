@@ -1,0 +1,19 @@
+//A PHP that redirects request(s) for one host to another host, giving an explanation to the client before the redirection.
+
+php 
+// Get the original host and the new host 
+$originalHost = $_SERVER['HTTP_HOST']; 
+$newHost = 'newhost.com'; 
+
+// Redirect message to be displayed to the client 
+$redirectMessage = 'This page has moved to a new location. You are being redirected to ' . $newHost; 
+
+// HTTP 301 Moved Permanently status code 
+http_response_code(301); 
+
+// Set the new host in the header 
+header('Location: http://' . $newHost); 
+header('Connection: close'); 
+
+// Display the redirection message to the client 
+echo $redirectMessage; 
